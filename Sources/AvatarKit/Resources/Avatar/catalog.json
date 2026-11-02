@@ -1,0 +1,439 @@
+{
+  "rig": {
+    "hips": "pelvis",
+    "head": "Head",
+    "leftUpperArm": "upperarm_l",
+    "rightUpperArm": "upperarm_r",
+    "rightForearm": "lowerarm_r",
+    "rightHand": "hand_r",
+    "rightIndex": "index_01_r",
+    "rightPinky": "pinky_01_r"
+  },
+  "bodies": [
+    {
+      "gender": "female",
+      "file": "Bodies/female.glb",
+      "bodyTypes": [
+        "verySkinny",
+        "skinny",
+        "normal",
+        "heavy"
+      ],
+      "skinMaterials": [],
+      "hairMaterials": [],
+      "faces": [
+        {
+          "id": "face_freckles",
+          "name": "Freckles",
+          "texture": "Bodies/female_face_freckles.jpg"
+        },
+        {
+          "id": "face_deep",
+          "name": "Deep",
+          "texture": "Bodies/female_face_deep.jpg"
+        }
+      ],
+      "faceMaterials": [
+        "MI_Base_Female"
+      ]
+    },
+    {
+      "gender": "male",
+      "file": "Bodies/male.glb",
+      "bodyTypes": [
+        "verySkinny",
+        "skinny",
+        "normal",
+        "heavy"
+      ],
+      "skinMaterials": [],
+      "hairMaterials": [],
+      "faces": [],
+      "faceMaterials": [
+        "MI_Base_Male"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "top_crop_black",
+      "name": "Black crop tee",
+      "slot": "top",
+      "file": "Items/top_crop_black.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "bottom_jeans_wide",
+      "name": "Wide-leg jeans",
+      "slot": "bottom",
+      "file": "Items/bottom_jeans_wide.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "shoes_sneakers_white",
+      "name": "White sneakers",
+      "slot": "shoes",
+      "file": "Items/shoes_sneakers_white.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "hair_ponytail",
+      "name": "High ponytail",
+      "slot": "hair",
+      "file": "Items/hair_ponytail.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "top_tee_white",
+      "name": "White tee",
+      "slot": "top",
+      "file": "Items/top_tee_white.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "bottom_jeans_skinny",
+      "name": "Skinny jeans",
+      "slot": "bottom",
+      "file": "Items/bottom_jeans_skinny.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "shoes_boots_black",
+      "name": "Black boots",
+      "slot": "shoes",
+      "file": "Items/shoes_boots_black.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "hair_bob",
+      "name": "Bob",
+      "slot": "hair",
+      "file": "Items/hair_bob.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "hair_long_wavy",
+      "name": "Long waves",
+      "slot": "hair",
+      "file": "Items/hair_long_wavy.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "top_hoodie_cau",
+      "name": "CAU hoodie",
+      "slot": "top",
+      "file": "Items/top_hoodie_cau.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "bottom_jeans_baggy",
+      "name": "Baggy jeans",
+      "slot": "bottom",
+      "file": "Items/bottom_jeans_baggy.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "top_tee_cau",
+      "name": "CAU tee",
+      "slot": "top",
+      "file": "Items/top_tee_cau.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "bottom_skirt_pleated",
+      "name": "Pleated skirt",
+      "slot": "bottom",
+      "file": "Items/bottom_skirt_pleated.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "top_tee_cau_tripo",
+      "name": "CAU tee · Tripo",
+      "slot": "top",
+      "file": "Items/top_tee_cau_tripo.glb",
+      "genders": [
+        "female"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "top_hoodie_cau_male",
+      "name": "CAU hoodie",
+      "slot": "top",
+      "file": "Items/top_hoodie_cau_male.glb",
+      "genders": [
+        "male"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "bottom_jeans_baggy_male",
+      "name": "Baggy jeans",
+      "slot": "bottom",
+      "file": "Items/bottom_jeans_baggy_male.glb",
+      "genders": [
+        "male"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    },
+    {
+      "id": "top_tee_cau_male",
+      "name": "CAU tee",
+      "slot": "top",
+      "file": "Items/top_tee_cau_male.glb",
+      "genders": [
+        "male"
+      ],
+      "tintMaterials": [],
+      "skinMaterials": [],
+      "hides": [],
+      "hidesSlots": []
+    }
+  ],
+  "moves": [
+    {
+      "move": "idle",
+      "file": "Moves/moves_library1.glb",
+      "clip": "Idle_Loop",
+      "loops": true
+    },
+    {
+      "move": "wave",
+      "loops": false
+    },
+    {
+      "move": "yes",
+      "file": "Moves/moves_library2.glb",
+      "clip": "Yes",
+      "loops": false
+    },
+    {
+      "move": "no",
+      "file": "Moves/moves_library2.glb",
+      "clip": "Idle_No_Loop",
+      "loops": false
+    },
+    {
+      "move": "dance",
+      "file": "Moves/moves_library1.glb",
+      "clip": "Dance_Loop",
+      "loops": true
+    },
+    {
+      "move": "crossArms",
+      "file": "Moves/moves_library2.glb",
+      "clip": "Idle_FoldArms_Loop",
+      "loops": true
+    },
+    {
+      "move": "phone",
+      "file": "Moves/moves_library2.glb",
+      "clip": "Idle_TalkingPhone_Loop",
+      "loops": true
+    },
+    {
+      "move": "walk",
+      "clip": "Walk_Loop",
+      "loops": true,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "catwalk",
+      "clip": "Walk_Formal_Loop",
+      "loops": true,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "celebrate",
+      "clip": "Celebration",
+      "loops": false,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "talk",
+      "clip": "Idle_Talking_Loop",
+      "loops": true,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "lookAround",
+      "clip": "Idle_LookAround_Loop",
+      "loops": true,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "sit",
+      "clip": "GroundSit_Idle_Loop",
+      "loops": true,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "backflip",
+      "clip": "BackFlip",
+      "loops": false,
+      "file": "Moves/moves_library1.glb"
+    },
+    {
+      "move": "cry",
+      "clip": "Crying",
+      "loops": false,
+      "file": "Moves/moves_library1.glb"
+    }
+  ],
+  "materialLuminance": {
+    "MI_Base_Female": 0.609,
+    "MI_Base_Male": 0.65
+  },
+  "skinTones": [
+    "#F6D3B8",
+    "#EBB894",
+    "#D99A6C",
+    "#B9784B",
+    "#8D5524",
+    "#5C3A21"
+  ],
+  "hairColors": [
+    "#1C1A19",
+    "#3B2A20",
+    "#6A4530",
+    "#A7744A",
+    "#D9B26F",
+    "#B5452E",
+    "#9C9C9C",
+    "#5B6DD9"
+  ],
+  "palette": [
+    "#2B2F36",
+    "#F2F2EE",
+    "#C0392B",
+    "#E67E22",
+    "#F1C40F",
+    "#27AE60",
+    "#2E86DE",
+    "#8E44AD",
+    "#E84393",
+    "#7F5539"
+  ],
+  "defaults": [
+    {
+      "config": {
+        "gender": "female",
+        "bodyType": "normal",
+        "skinTone": "#EBB894",
+        "items": {
+          "top": {
+            "itemID": "top_crop_black"
+          },
+          "bottom": {
+            "itemID": "bottom_jeans_wide"
+          },
+          "shoes": {
+            "itemID": "shoes_sneakers_white"
+          },
+          "hair": {
+            "itemID": "hair_ponytail"
+          }
+        }
+      }
+    },
+    {
+      "config": {
+        "gender": "male",
+        "bodyType": "normal",
+        "skinTone": "#D99A6C",
+        "items": {
+          "top": {
+            "itemID": "top_tee_cau_male"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.DS_Store
+.build/
+.swiftpm/
+.assets-source/
+Tools/node_modules/
+Demo/AvatarDemo.xcodeproj/
+DerivedData/
+Tools/tripo/.env
+Demo/AvatarDemo/Bakeoff/
+Tools/clothes/.env
+__pycache__/
+*.pyc
