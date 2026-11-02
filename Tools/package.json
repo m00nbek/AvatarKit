@@ -1,0 +1,14 @@
+{
+  "name": "avatarkit-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build-assets": "node build-assets.mjs"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.2.1",
+    "@gltf-transform/functions": "^4.2.1",
+    "meshoptimizer": "^0.22.0",
+    "sharp": "^0.35.5"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "about": "Outfit A as other 3D generators made it (bake-off of 2026-10-28), cut into items for the Tripo base body. Read by build-bakeoff.mjs; models are relative to .assets-source. forward is the way each generator's model faces.",
+  "body": {
+    "gender": "female",
+    "outfit": "outfit_a"
+  },
+  "tripo": {
+    "id": "tripo",
+    "name": "Tripo v3.1"
+  },
+  "generators": [
+    {
+      "id": "pixal3d_mv",
+      "name": "Pixal3D, 4 views",
+      "short": "Pixal3D 4 views",
+      "model": "bakeoff/pixal3d_mv/outfit_a.glb",
+      "forward": "-z"
+    },
+    {
+      "id": "pixal3d",
+      "name": "Pixal3D, 1 image",
+      "short": "Pixal3D 1 image",
+      "model": "bakeoff/pixal3d/outfit_a.glb",
+      "forward": "-z"
+    },
+    {
+      "id": "hunyuan21",
+      "name": "Hunyuan3D 2.1",
+      "short": "Hunyuan",
+      "model": "bakeoff/hunyuan21/outfit_a.glb",
+      "forward": "+z"
+    }
+  ]
+}

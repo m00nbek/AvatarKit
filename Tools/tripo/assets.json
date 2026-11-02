@@ -1,0 +1,373 @@
+{
+  "about": "What to generate with Tripo, read by generate.mjs and build-assets.mjs. One base body per gender; body types and faces are made by editing that base's image (or retexturing its model), so they line up with it. Prompts are assembled as: keepEverythingElse (or keepEverythingButBody for body types) + prompt + pose + style. Clothes are garments (bodies[].garments), each made on its own from the designer's front and back pictures: Tripo redraws them as ghost-mannequin pictures (garmentPrompt) unless \"redraw\": false, then makes the 3D garment from front and back (settings.garment3d), and fit-garments.py fits it onto the body. Outfits (bodies[].outfits) are the older way: the base generated again wearing clothes, cut into items by fit-outfits.py; the designer outfits marked \"generator\": \"hunyuan\" were made in 3D with Hunyuan3D, not Tripo.",
+  "reference": "reference/female_v2_front.png",
+  "forward": "+x",
+  "style": "3D stylized cartoon character render in exactly the same art style as the reference image: smooth rounded shapes, soft matte materials, clean painted textures, cute proportions with a slightly large head and big expressive eyes, no outlines. Plain white background, soft even studio lighting, no floor shadow. Full body visible from the top of the head to the feet, front view, camera at chest height.",
+  "pose": "Standing in a relaxed A-pose: arms straight and angled about 45 degrees down and away from the body, with a clear gap between the arms and the torso; hands open, fingers together, palms facing the thighs; feet shoulder-width apart with a clear gap between the legs; looking straight at the camera; neutral friendly expression.",
+  "keepEverythingElse": "Exactly the same character, face, body, skin, pose, framing and camera as the reference image. Change only what is described; everything else stays identical.",
+  "keepEverythingButBody": "Exactly the same character, head, face, hands, feet, skin, clothing style, pose, framing and camera as the reference image. Change only the build of the body as described; the head, hands and feet keep exactly the same size, shape and position.",
+  "negative": "extra limbs, extra fingers, arms touching the body, hands touching the legs, legs touching each other, cropped head, cropped feet, floor shadow, text, logo, watermark, background objects",
+  "settings": {
+    "image": {
+      "model": "chat_image_2.5_sunburst",
+      "quality": "high",
+      "size": "2048x2048",
+      "background": "opaque",
+      "output_format": "png"
+    },
+    "multiview": {
+      "endpoint": "/generation/image-to-multiview"
+    },
+    "model3d": {
+      "endpoint": "/generation/multiview-to-model",
+      "model": "v3.1-20260211",
+      "texture": true,
+      "pbr": true,
+      "texture_quality": "standard",
+      "orientation": "align_image",
+      "face_limit": {
+        "body": 80000,
+        "outfit": 120000
+      }
+    },
+    "segment": {
+      "endpoint": "/mesh/segment",
+      "model": "v2.0-20260430",
+      "segmentation_granularity": "balanced"
+    },
+    "retexture": {
+      "endpoint": "/models/texture",
+      "model": "v3.5-20260815",
+      "texture_quality": "detailed",
+      "delight": true
+    },
+    "rig": {
+      "endpoint": "/animations/rig",
+      "model": "v3.0-20260909",
+      "rig_type": "biped",
+      "spec": "unreal",
+      "out_format": "glb",
+      "note": "Optional comparison with Tools/rig-generated-body.py; ours plays our clips directly."
+    },
+    "budget": {
+      "note": "Approximate credits: image edit 20, multiview 10, 3D 35-50, segmentation 40, retexture 10-20.",
+      "base": 75,
+      "outfit": 130,
+      "face": 40
+    },
+    "garment3d": {
+      "endpoint": "/generation/multiview-to-model",
+      "model": "v3.1-20260211",
+      "texture": true,
+      "pbr": true,
+      "texture_quality": "detailed",
+      "geometry_quality": "detailed",
+      "orientation": "align_image",
+      "face_limit": 60000
+    }
+  },
+  "bodyShapes": [
+    {
+      "id": "verySkinny",
+      "name": "Very skinny",
+      "prompt": "The character is now very skinny: thin arms and legs, narrow shoulders, waist and hips, a flat stomach. The same plain gray basics, fitted to the thinner body."
+    },
+    {
+      "id": "skinny",
+      "name": "Skinny",
+      "prompt": "The character is now noticeably slimmer than in the reference image, about halfway to very skinny: thinner arms and legs, a narrower chest, waist and hips. The same plain gray basics, fitted to the slimmer body."
+    },
+    {
+      "id": "heavy",
+      "name": "Heavy",
+      "prompt": "The character is now heavy, plus-size: a wide soft belly and hips, thick thighs and upper arms, a fuller chest and neck. The arms still hang with a clear gap from the body. The same plain gray basics, stretched over the bigger body."
+    }
+  ],
+  "bodies": [
+    {
+      "gender": "female",
+      "name": "Base_Female",
+      "skinTone": "#EBB894",
+      "defaultOutfit": "outfit_a",
+      "base": {
+        "id": "base_female",
+        "from": "reference",
+        "prompt": "Same face, body proportions and skin tone as the reference character, but: completely bald smooth head like a mannequin (no hair at all, keep the eyebrows), barefoot, wearing only a plain light-gray seamless fitted tank top and plain light-gray fitted shorts that end at mid-thigh. No jewelry, no accessories.",
+        "negative": "hair, hat, shoes, socks, jewelry, bag",
+        "checks": [
+          "gap between arms and torso and between the legs in every view",
+          "bald, no hair geometry",
+          "barefoot, toes visible",
+          "face matches the reference style"
+        ]
+      },
+      "faces": [
+        {
+          "id": "face_classic",
+          "name": "Classic",
+          "note": "The base body's own texture, no extra generation."
+        },
+        {
+          "id": "face_freckles",
+          "name": "Freckles",
+          "prompt": "Change only the face and skin: a slightly rounder face with light freckles across the nose and cheeks, big round warm-brown eyes, a small closed-mouth smile, light-medium warm skin. Still bald, same eyebrows shape."
+        },
+        {
+          "id": "face_deep",
+          "name": "Deep",
+          "prompt": "Change only the face and skin: deep brown skin, almond-shaped dark eyes with soft lashes, fuller lips, softly defined cheekbones, calm smile. Still bald, natural dark eyebrows."
+        }
+      ],
+      "outfits": [
+        {
+          "id": "outfit_a",
+          "prompt": "Now she wears: a black fitted short-sleeve crop t-shirt that ends just above the navel; high-waisted light-blue wide-leg denim jeans that end at the ankle bone so the shoes are fully visible; clean white low-top sneakers; and light-brown hair pulled back into a high ponytail that hangs behind the head. Every piece is fully visible: the t-shirt does not cover the jeans waistband, the jeans do not cover the sneakers, the hair does not cover the t-shirt.",
+          "items": [
+            {
+              "id": "top_crop_black",
+              "name": "Black crop tee",
+              "slot": "top",
+              "fit": "skinned",
+              "segment": "shirt"
+            },
+            {
+              "id": "bottom_jeans_wide",
+              "name": "Wide-leg jeans",
+              "slot": "bottom",
+              "fit": "skinned",
+              "segment": "pants"
+            },
+            {
+              "id": "shoes_sneakers_white",
+              "name": "White sneakers",
+              "slot": "shoes",
+              "fit": "feet",
+              "segment": "shoes"
+            },
+            {
+              "id": "hair_ponytail",
+              "name": "High ponytail",
+              "slot": "hair",
+              "fit": "head",
+              "segment": "hair"
+            }
+          ],
+          "generator": "tripo"
+        },
+        {
+          "id": "outfit_b",
+          "prompt": "Now she wears: a plain white fitted short-sleeve crew-neck t-shirt whose hem meets the jeans waistband without covering it; dark-blue high-waisted skinny denim jeans that end at the ankle bone so the boots are fully visible; black leather ankle boots with a low block heel; and a chin-length straight black bob haircut with soft bangs that does not touch the shoulders. Every piece is fully visible and nothing overlaps another piece.",
+          "items": [
+            {
+              "id": "top_tee_white",
+              "name": "White tee",
+              "slot": "top",
+              "fit": "skinned",
+              "segment": "shirt"
+            },
+            {
+              "id": "bottom_jeans_skinny",
+              "name": "Skinny jeans",
+              "slot": "bottom",
+              "fit": "skinned",
+              "segment": "pants"
+            },
+            {
+              "id": "shoes_boots_black",
+              "name": "Black boots",
+              "slot": "shoes",
+              "fit": "feet",
+              "segment": "shoes"
+            },
+            {
+              "id": "hair_bob",
+              "name": "Bob",
+              "slot": "hair",
+              "fit": "head",
+              "segment": "hair"
+            }
+          ],
+          "generator": "tripo"
+        },
+        {
+          "id": "outfit_hair_long",
+          "prompt": "Change only the hairstyle: she now has long dark-brown wavy hair with a middle part. The hair hangs behind her shoulders and does not cover her arms or her top. Clothes, face and pose stay the same.",
+          "items": [
+            {
+              "id": "hair_long_wavy",
+              "name": "Long waves",
+              "slot": "hair",
+              "fit": "head",
+              "segment": "hair"
+            }
+          ],
+          "generator": "tripo"
+        },
+        {
+          "id": "outfit_hoodie_cau",
+          "garments": [
+            "Designer/hoodie.png"
+          ],
+          "prompt": "Now she wears the hoodie shown in the second image (front, side and back views of one hoodie): white, with the blue CAU letters across the chest, the kangaroo pocket and the white drawstrings, the hood down behind the neck. Same loose fit and hip length as in the image. Her own plain light-gray shorts stay visible below the hoodie. She stays bald and barefoot.",
+          "items": [
+            {
+              "id": "top_hoodie_cau",
+              "name": "CAU hoodie",
+              "slot": "top",
+              "fit": "skinned",
+              "segment": "shirt"
+            }
+          ],
+          "generator": "hunyuan"
+        },
+        {
+          "id": "outfit_jeans_baggy",
+          "garments": [
+            "Designer/jeans.png"
+          ],
+          "prompt": "Now she wears the jeans shown in the second image (front, side and back views of one pair): light-blue baggy wide-leg denim with the same wash, seams and pockets, ending at the ankle so the bare feet are fully visible. Her own plain light-gray tank top stays on and ends above the waistband, so the whole waistband is visible. She stays bald and barefoot.",
+          "items": [
+            {
+              "id": "bottom_jeans_baggy",
+              "name": "Baggy jeans",
+              "slot": "bottom",
+              "fit": "skinned",
+              "segment": "pants"
+            }
+          ],
+          "generator": "hunyuan"
+        },
+        {
+          "id": "outfit_tee_cau",
+          "garments": [
+            "Designer/shirt.png"
+          ],
+          "prompt": "Now she wears the t-shirt shown in the second image (front, side and back views of one t-shirt): cream, short-sleeved, with the same navy and olive-green shapes, thin white lines and the CAU print, in the same relaxed fit and length. Her own plain light-gray shorts stay visible below it. She stays bald and barefoot.",
+          "items": [
+            {
+              "id": "top_tee_cau",
+              "name": "CAU tee",
+              "slot": "top",
+              "fit": "skinned",
+              "segment": "shirt"
+            }
+          ],
+          "generator": "hunyuan"
+        },
+        {
+          "id": "outfit_skirt_pleated",
+          "garments": [
+            "Designer/skirt.png"
+          ],
+          "prompt": "Now she wears the skirt shown in the second image (front, side and back views of one skirt): a black pleated mini skirt with the cargo pocket, belt loops and the silver star charm on a short chain, in the same length. Her own plain light-gray tank top stays on and ends above the skirt's waistband, so the waistband is fully visible. She stays bald and barefoot.",
+          "items": [
+            {
+              "id": "bottom_skirt_pleated",
+              "name": "Pleated skirt",
+              "slot": "bottom",
+              "fit": "skinned",
+              "segment": "pants"
+            }
+          ],
+          "generator": "hunyuan"
+        }
+      ],
+      "garments": [
+        {
+          "id": "garment_tee_cau",
+          "describe": "T-shirt",
+          "pictures": {
+            "front": "Designer/tee_cau_front.png",
+            "back": "Designer/tee_cau_back.png"
+          },
+          "item": {
+            "id": "top_tee_cau_tripo",
+            "name": "CAU tee · Tripo",
+            "slot": "top",
+            "fit": "skinned",
+            "segment": "shirt"
+          }
+        }
+      ]
+    },
+    {
+      "gender": "male",
+      "name": "Base_Male",
+      "skinTone": "#D99A6C",
+      "defaultOutfit": "outfit_tee_cau_male",
+      "base": {
+        "id": "base_male",
+        "from": "reference",
+        "prompt": "A young man drawn in exactly the same art style as the reference character: the same head-to-body proportions, eye style, smooth rounded shapes and soft matte materials, with a friendly masculine face, short neat eyebrows and a defined jaw. Completely bald smooth head like a mannequin (no hair at all, no beard, keep the eyebrows), barefoot, wearing only a plain light-gray fitted sleeveless tank top (bare shoulders and arms) and plain light-gray fitted shorts that end at mid-thigh. No jewelry, no accessories.",
+        "negative": "hair, beard, stubble, hat, shoes, socks, jewelry, bag",
+        "checks": [
+          "gap between arms and torso and between the legs in every view",
+          "bald, no hair geometry",
+          "barefoot, toes visible",
+          "face matches the reference style"
+        ]
+      },
+      "faces": [],
+      "outfits": [
+        {
+          "id": "outfit_hoodie_cau_male",
+          "garments": [
+            "Designer/hoodie.png"
+          ],
+          "prompt": "Now he wears the hoodie shown in the second image (front, side and back views of one hoodie): white, with the blue CAU letters across the chest, the kangaroo pocket and the white drawstrings, the hood down behind the neck. Same loose fit and hip length as in the image. His own plain light-gray shorts stay visible below the hoodie. He stays bald and barefoot.",
+          "items": [
+            {
+              "id": "top_hoodie_cau_male",
+              "name": "CAU hoodie",
+              "slot": "top",
+              "fit": "skinned",
+              "segment": "shirt"
+            }
+          ],
+          "generator": "hunyuan"
+        },
+        {
+          "id": "outfit_jeans_baggy_male",
+          "garments": [
+            "Designer/jeans.png"
+          ],
+          "prompt": "Now he wears the jeans shown in the second image (front, side and back views of one pair): light-blue baggy wide-leg denim with the same wash, seams and pockets, ending at the ankle so the bare feet are fully visible. His own plain light-gray tank top stays on and ends above the waistband, so the whole waistband is visible. He stays bald and barefoot.",
+          "items": [
+            {
+              "id": "bottom_jeans_baggy_male",
+              "name": "Baggy jeans",
+              "slot": "bottom",
+              "fit": "skinned",
+              "segment": "pants"
+            }
+          ],
+          "generator": "hunyuan"
+        },
+        {
+          "id": "outfit_tee_cau_male",
+          "garments": [
+            "Designer/shirt.png"
+          ],
+          "prompt": "Now he wears the t-shirt shown in the second image (front, side and back views of one t-shirt): cream, short-sleeved, with the same navy and olive-green shapes, thin white lines and the CAU print, in the same relaxed fit and length. His own plain light-gray shorts stay visible below it. He stays bald and barefoot.",
+          "items": [
+            {
+              "id": "top_tee_cau_male",
+              "name": "CAU tee",
+              "slot": "top",
+              "fit": "skinned",
+              "segment": "shirt"
+            }
+          ],
+          "generator": "hunyuan"
+        }
+      ]
+    }
+  ],
+  "clothesGenerator": "tripo",
+  "garmentPrompt": {
+    "front": "The first image is a 3D cartoon character seen from the front. Dress the character in the {garment} shown in the second image, worn naturally with a little looseness, keeping exactly the same pose, position, size and framing as the first image. Then make the character completely invisible: no head, neck, arms, hands, legs or feet, and none of the gray tank top or shorts, so only the {garment} is left, floating exactly where it was worn, like a ghost-mannequin product photo. It keeps its worn 3D shape, and its neck, sleeve and waist openings are open and empty. Copy its colors, shapes, seams and print exactly from the second image.",
+    "back": "The first image is a 3D cartoon character seen from behind. Dress the character in the {garment}; the second image shows the back of it. Keep exactly the same pose, position, size and framing as the first image. Then make the character completely invisible: no head, neck, arms, hands, legs or feet, and none of the gray tank top or shorts, so only the {garment} is left, floating exactly where it was worn, like a ghost-mannequin product photo seen from behind. It keeps its worn 3D shape, and its neck, sleeve and waist openings are open and empty. Copy the colors, shapes, seams and print of its back exactly from the second image.",
+    "style": "Same art style as the first image: smooth shapes, soft matte fabric, clean painted texture. Plain white background, soft even studio lighting, no shadows.",
+    "negative": "body, skin, head, arms, hands, legs, mannequin, hanger, extra garments, text overlay, watermark, floor shadow, cropped garment"
+  }
+}
